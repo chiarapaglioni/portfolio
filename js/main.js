@@ -61,6 +61,23 @@ if (splitHero && splitHandle) {
   window.requestAnimationFrame(() => {
     setSplit(50);
   });
+
+  // Mouse parallax effect on split hero
+  splitHero.addEventListener('mousemove', (e) => {
+    if (dragging) return;
+    const rect = splitHero.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    
+    // Subtle tilt effect
+    splitHero.style.setProperty('--tilt-x', (y - 0.5) * 2 + 'deg');
+    splitHero.style.setProperty('--tilt-y', (x - 0.5) * -2 + 'deg');
+  });
+
+  splitHero.addEventListener('mouseleave', () => {
+    splitHero.style.setProperty('--tilt-x', '0deg');
+    splitHero.style.setProperty('--tilt-y', '0deg');
+  });
 }
 
 // ---------- Work page: timeline reveal on scroll ----------
@@ -125,3 +142,35 @@ if (lightbox) {
     if (e.key === 'Escape') close();
   });
 }
+
+// ---------- Global mouse glow effect ----------
+document.addEventListener('mousemove', (e) => {
+  const x = e.clientX;
+  const y = e.clientY;
+  
+  // Create a subtle glow effect that follows the cursor
+  document.documentElement.style.setProperty('--mouse-x', x + 'px');
+  document.documentElement.style.setProperty('--mouse-y', y + 'px');
+});
+
+// ---------- Link hover effects ----------
+document.querySelectorAll('a[href]').forEach((link) => {
+  link.addEventListener('mouseenter', function() {
+    this.style.position = 'relative';
+  });
+});
+
+// ---------- Smooth page transitions ----------
+window.addEventListener('pageshow', () => {
+  document.body.style.animation = 'fadeIn 0.4s ease-out';
+});
+
+// Add fade-in animation to styles
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeIn {
+    from { opacity: 0.8; }
+    to { opacity: 1; }
+  }
+`;
+document.head.appendChild(style);
