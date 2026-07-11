@@ -181,7 +181,7 @@ nav.main-nav a[aria-current="page"]::after {
 .site-footer {
   border-top: 1px solid var(--line);
   padding: 2rem 0 3rem;
-  background: rgba(0, 240, 255, 0.05);
+  background: transparent;
 }
 
 .site-footer .wrap {
@@ -236,7 +236,7 @@ nav.main-nav a[aria-current="page"]::after {
 }
 
 /* =========================================================
-   Split hero
+   Split hero - MINIMAL
    ========================================================= */
 .split-hero {
   position: relative;
@@ -254,47 +254,30 @@ nav.main-nav a[aria-current="page"]::after {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
   padding: var(--pad);
 }
 
 .split-pane.left {
   left: 0;
-  background: linear-gradient(90deg, rgba(0, 80, 180, 0.15) 0%, transparent 100%);
+  background: linear-gradient(90deg, rgba(0, 80, 180, 0.08) 0%, transparent 100%);
   color: #e0e6ff;
   clip-path: inset(0 calc(100% - var(--split, 50%)) 0 0);
 }
 
 .split-pane.right {
   left: 0;
-  background: linear-gradient(270deg, rgba(179, 0, 255, 0.15) 0%, transparent 100%);
+  background: linear-gradient(270deg, rgba(179, 0, 255, 0.08) 0%, transparent 100%);
   color: #e0e6ff;
   clip-path: inset(0 0 0 var(--split, 50%));
 }
 
-.split-pane .eyebrow {
-  opacity: 0.85;
-}
-
-.split-pane.left .eyebrow {
-  color: var(--signal);
-}
-
-.split-pane.right .eyebrow {
-  color: var(--bloom);
-}
-
-.split-pane h1 {
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  max-width: 12ch;
-  margin: 0.35rem 0 0.9rem;
-}
-
-.split-pane p {
-  max-width: 40ch;
-  margin: 0 0 1.4rem;
-  opacity: 0.9;
-  color: #a8b2e8;
+.icon-block {
+  font-size: 8rem;
+  font-weight: 300;
+  opacity: 0.6;
+  letter-spacing: 2px;
 }
 
 .split-handle {
@@ -371,6 +354,62 @@ nav.main-nav a[aria-current="page"]::after {
 
 .page-head.art {
   background: linear-gradient(180deg, rgba(179, 0, 255, 0.1), transparent);
+}
+
+/* =========================================================
+   Home section - MINIMAL
+   ========================================================= */
+.intro {
+  padding: 4rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-links {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(26, 31, 58, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.home-card.tech {
+  border-color: var(--signal);
+}
+
+.home-card.tech:hover {
+  border-color: var(--signal);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+  transform: translateY(-4px);
+}
+
+.home-card.art {
+  border-color: var(--bloom);
+}
+
+.home-card.art:hover {
+  border-color: var(--bloom);
+  box-shadow: 0 0 20px rgba(179, 0, 255, 0.3);
+  transform: translateY(-4px);
+}
+
+.home-card .icon {
+  font-size: 3rem;
+  font-weight: 300;
+  opacity: 0.7;
 }
 
 /* =========================================================
@@ -806,5 +845,10 @@ nav.main-nav a[aria-current="page"]::after {
 
   .socials {
     padding-top: 0.4rem;
+  }
+
+  .home-links {
+    flex-direction: column;
+    gap: 1.5rem;
   }
 }
